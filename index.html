@@ -7,19 +7,22 @@
   <h2>RSVP Form</h2>
   <form id="rsvp-form">
     <label>Name: <input type="text" name="name" required></label><br>
+    
     <label>Will you attend?
       <select name="attending">
         <option value="Yes">Yes</option>
         <option value="No">No</option>
       </select>
     </label><br>
+
     <label>Bringing Partner?
       <select name="partner">
         <option value="Yes">Yes</option>
         <option value="No">No</option>
-        </select>
-    <button type="submit">Submit</button>
+      </select>
     </label><br>
+
+    <button type="submit">Submit</button>
   </form>
 
   <div id="response"></div>
@@ -35,17 +38,22 @@
         partner: formData.get('partner')
       };
 
-      const response = await fetch('https://script.google.com/macros/s/AKfycbyZNVh0t4OQI8GeeZUS6xBtFq87uC7ND7--FavJ8sO2UMLQwBC0tyZIn5A6_5mZ4MmO9g/exec', {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
+      try {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyZNVh0t4OQI8GeeZUS6xBtFq87uC7ND7--FavJ8sO2UMLQwBC0tyZIn5A6_5mZ4MmO9g/exec', {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
 
-      const result = await response.json();
-      document.getElementById('response').innerText = "Thank you for your response!";
-      form.reset();
+        const result = await response.json();
+        document.getElementById('response').innerText = "Thank you for your response!";
+        form.reset();
+      } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('response').innerText = "There was an error submitting your RSVP.";
+      }
     });
   </script>
 </body>
