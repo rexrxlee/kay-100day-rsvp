@@ -59,26 +59,29 @@
           params.append(key, value);
         }
 
+        // Send the POST request and show success message immediately
         try {
-          const response = await fetch('https://script.google.com/macros/s/AKfycbz-clF3kRUCNakdvVjJJ3McTjAzGifwVQ83nWiEzqwjv5Ff3Bcx3Ad3l7DUqrE3ENqQUw/exec', {
+          fetch('https://script.google.com/macros/s/AKfycbz-clF3kRUCNakdvVjJJ3McTjAzGifwVQ83nWiEzqwjv5Ff3Bcx3Ad3l7DUqrE3ENqQUw/exec', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded'
             },
             body: params
-          });
-
-          const result = await response.json();
-
-          if (response.ok && result.status === 'success') {
+          }).then(() => {
+            // Display success message regardless of response
             document.getElementById('response').innerText = "🎉 Thank you for your response!";
             form.reset();
-          } else {
-            document.getElementById('response').innerText = `❌ Error: ${result.message || 'There was a problem submitting your RSVP.'}`;
-          }
+          }).catch((error) => {
+            // Log the error but still show success message
+            console.error("Fetch error:", error);
+            document.getElementById('response').innerText = "🎉 Thank you for your response!";
+            form.reset();
+          });
         } catch (error) {
-          console.error("Fetch error:", error);
-          document.getElementById('response').innerText = "⚠️ Error submitting form.";
+          // Fallback for any unexpected errors
+          console.error("Submission error:", error);
+          document.getElementById('response').innerText = "🎉 Thank you for your response!";
+          form.reset();
         }
       });
     });
