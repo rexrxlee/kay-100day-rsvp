@@ -2,22 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Submission Successful</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: sans-serif;
+      font-family: 'Fredoka', sans-serif;
       padding: 2rem;
       max-width: 600px;
       margin: auto;
       text-align: center;
+      background-image: url('https://i.pinimg.com/originals/f9/aa/df/f9aadf8d6db9050c001fca6f7eacc5ec.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      color: #333;
     }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
     h1 {
       color: #e91e63;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+    }
+
+    .emoji {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.5rem;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Your entry has been submitted</h1>
-  <p>The address and time has been sent to your email.</p>
+  <div class="container">
+    <div class="emoji">✅🎉</div>
+    <h1>Your RSVP Has Been Submitted!</h1>
+    <p>📩 We've emailed you the event details including the <strong>address</strong> and <strong>time</strong>.</p>
+    <p>See you at the party! 🥳</p>
+  </div>
 </body>
 </html>
