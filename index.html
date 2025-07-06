@@ -4,18 +4,74 @@
   <meta charset="UTF-8" />
   <title>RSVP to Kay's 100th Day!</title>
   <style>
-    body { font-family: sans-serif; padding: 2rem; max-width: 600px; margin: auto; text-align: center; }
-    h2 { color: #e91e63; }
-    label { display: block; margin-bottom: 1rem; text-align: left; }
-    button { padding: 0.5rem 1rem; background: #e91e63; color: white; border: none; cursor: pointer; }
-    button:disabled { background: #ccc; cursor: not-allowed; }
-    #response { margin-top: 1rem; font-weight: bold; }
-    img { max-width: 100%; height: auto; margin-bottom: 2rem; }
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+    }
+
+    h2 {
+      color: #e91e63;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.25rem;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      background: #e91e63;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    #response {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 2rem;
+    }
+
+    .details {
+      text-align: left;
+      margin-bottom: 2rem;
+      background: #fff8fb;
+      padding: 1rem;
+      border-left: 4px solid #e91e63;
+    }
   </style>
 </head>
 <body>
   <!-- Poster Image -->
   <img src="poster.jpg" alt="Kay's 100th Day Invitation Poster">
+
+  <!-- Event Details -->
+  <div class="details">
+    <p><strong>📍 Address:</strong> Blk 3 Tiong Bahru Rd #01-09 S(162003)</p>
+    <p><strong>📅 Date:</strong> 20 Sep 2025 (Saturday)</p>
+    <p><strong>🕛 Time:</strong> 12pm – 5pm</p>
+    <p><strong>🍴 Note:</strong> Only light snacks and beverages provided</p>
+  </div>
 
   <h2>RSVP Form</h2>
 
@@ -60,8 +116,8 @@
       form.addEventListener("submit", async function (e) {
         e.preventDefault();
 
-        submitBtn.disabled = true; // disable to prevent double submit
-        responseDiv.textContent = ""; // clear previous messages
+        submitBtn.disabled = true;
+        responseDiv.textContent = "";
 
         const formData = new FormData(form);
         const params = new URLSearchParams();
@@ -80,10 +136,17 @@
             }
           );
 
-          const result = await res.json();
+          const text = await res.text();
+          let result;
+
+          try {
+            result = JSON.parse(text);
+          } catch (err) {
+            console.warn("Invalid JSON response:", text);
+            throw new Error("Server returned non-JSON");
+          }
 
           if (result.status === "success") {
-            // Redirect to confirmation page on success
             window.location.href = "https://rexrxlee.github.io/kay-100day-rsvp/confirmation.html";
           } else {
             responseDiv.textContent = "Submission failed: " + (result.message || "Unknown error");
