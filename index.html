@@ -17,6 +17,7 @@
       background-position: center;
       background-attachment: fixed;
       color: #333;
+      position: relative;
     }
 
     h2 {
@@ -87,9 +88,49 @@
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
+
+    /* Sticker & GIF */
+    .shinchan-header {
+      width: 100%;
+      margin-bottom: 1rem;
+      border-radius: 12px;
+    }
+
+    .shinchan-sticker {
+      position: fixed;
+      bottom: 20px;
+      right: 10px;
+      width: 80px;
+      opacity: 0.9;
+      z-index: 10;
+    }
+
+    .shinchan-side {
+      position: absolute;
+      left: -60px;
+      top: 60%;
+      width: 100px;
+      transform: translateY(-50%);
+    }
+
+    @media (max-width: 600px) {
+      .shinchan-side {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Top Shin-chan GIF -->
+  <img class="shinchan-header" src="https://media.tenor.com/El0pZdn0o7oAAAAC/crayon-shin-chan-dancing.gif" alt="Shin-chan dancing" />
+
+  <!-- Side Shin-chan Sticker -->
+  <img class="shinchan-side" src="https://i.pinimg.com/originals/9b/f2/8b/9bf28bb61bc44e47bbf028603d5c3d6b.png" alt="Shin-chan waving" />
+
+  <!-- Floating bottom sticker -->
+  <img class="shinchan-sticker" src="https://i.pinimg.com/originals/43/16/61/4316619f75a9e1a29bfb894cd3a0e7cd.png" alt="Shin-chan" />
+
   <!-- Poster Image -->
   <img class="poster" src="poster.jpg" alt="Kay's 100th Day Invitation Poster">
 
