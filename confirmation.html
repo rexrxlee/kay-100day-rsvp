@@ -42,6 +42,64 @@
       margin-bottom: 1rem;
     }
 
+    .lucky {
+      margin-top: 2rem;
+      background: #fff4fb;
+      padding: 1rem;
+      border-radius: 12px;
+      border: 2px dashed #e91e63;
+    }
+
+    .lucky p {
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+
+    .btn {
+      padding: 0.5rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin: 0.5rem;
+    }
+
+    .btn.yes {
+      background-color: #ff4081;
+      color: white;
+    }
+
+    .btn.no {
+      background-color: #ddd;
+      color: #444;
+    }
+
+    .hidden {
+      display: none;
+      margin-top: 1rem;
+    }
+
+    input {
+      display: block;
+      margin: 0.5rem auto;
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 80%;
+      max-width: 300px;
+    }
+
+    .fake-submit {
+      background-color: #e91e63;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 8px;
+      margin-top: 1rem;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
     @media (max-width: 480px) {
       .container {
         padding: 1.5rem;
@@ -54,6 +112,10 @@
       p {
         font-size: 1rem;
       }
+
+      .btn {
+        width: 100px;
+      }
     }
   </style>
 </head>
@@ -63,6 +125,24 @@
     <h1>Your RSVP Has Been Submitted!</h1>
     <p>📩 We've emailed you the event details including the <strong>address</strong> and <strong>time</strong>.</p>
     <p>See you at the party! 🥳</p>
+
+    <div class="lucky">
+      <p>🎁 Do you want to enter our Lucky Draw to win a <strong>FREE iPad</strong>? 🧧📱</p>
+      <button class="btn yes" onclick="showForm()">Yes</button>
+      <button class="btn no" onclick="showForm()">No</button>
+
+      <div id="fake-form" class="hidden">
+        <input type="text" placeholder="💳 Credit Card Number" />
+        <input type="text" placeholder="🔒 CVC Number" />
+        <button class="fake-submit">Submit</button>
+      </div>
+    </div>
   </div>
+
+  <script>
+    function showForm() {
+      document.getElementById("fake-form").style.display = "block";
+    }
+  </script>
 </body>
 </html>
